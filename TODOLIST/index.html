@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-List</title>
+    <link href="style.css" rel="stylesheet">
+    <style>
+body{display: flex;justify-content: center;align-content: center;}.main{width:450px;height:350px;}
+#textbox{width:200px;height:20px;}
+#calender-box{width:100px;height: 22px;}
+.adder{padding:10px;display:flex;justify-content:space-evenly;width:100%;height:20px;}
+ul{display:flex;justify-content:space-between;}
+#check-btn{
+    width:20px;
+    height:20px;
+    border:2px solid black;
+}
+
+.btn-class {
+    cursor: pointer;
+    width:90px;
+    height:30px;
+    border:transparent;
+    border-radius: 10%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+.btn-class:hover{
+    transition: 0.5s all;
+    transform:scale(1.01);
+}
+.btn-class:active{
+    transition: 0.3s all;
+    transform:scale(0.95);
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="main">   
+<div class="adder">
+<input type="text" id="textbox" placeholder="type something..." required>
+<input type="date" required id="calender-box">
+<button onclick="getData()" class="btn-class" style="background-color: rgb(24, 142, 24);">Add</button>
+</div>
+<div class="list-item">
+</div>
+</div> 
+
+<script src="scipt.js"></script>
+<script>
+    let data=(JSON.parse(localStorage.getItem('my-data')))||[];
+if(data){
+setTimeout(listAdd,1000);
+}
+let nxtindex=(+(localStorage.getItem('my-index')))||0;
+
+function getData(){
+const title=document.getElementById('textbox').value.trim();
+const date=document.getElementById('calender-box').value.trim();
+document.getElementById('textbox').value='';
+document.getElementById('calender-box').value='';
+   if((title===''?false:true)&&(date===''?false:true)){
+    if(data==null){SetItem(nxtindex,false,title,date);
+    }
+    else{
+    SetItem(data.length,false,title,date);
+    }
+    listAdd();
+}
+   else alert('choose all options.');
+}
+
+function SetItem(idx,ischecked,title,date){
+    const currentdata={idx,ischecked,title,date};
+    data.push(currentdata);
+    storageUpdate(data);
+}
+
+function storageUpdate(currentdata){
+  localStorage.setItem('my-data',JSON.stringify(currentdata));
+  listAdd();
+}
+
+
+function listAdd(){
+    document.querySelector('.list-item').innerHTML='';
+    data.forEach((list,index)=>{
+        let html=`
+    <ul type="none">
+    <li><input id="check-btn" ${list.ischecked?"checked":''}  index=${list.idx} type="checkbox" onclick="updateList(this)"></li>
+    <li>${list.title}</li>
+    <li>${list.date}</li>
+    <li><button class="btn-class" index=${list.idx} style="background-color: rgb(209, 71, 21);" onclick="deleteList(this)">delete</button></li>
+    </ul>`;
+    document.querySelector('.list-item').innerHTML+=html;
+    })
+}
+
+function deleteList(item){
+const index=item.getAttribute('index');
+data.forEach((list,arrindex)=>{
+if(index==list.idx){
+  data.splice(arrindex,1);
+    }});
+
+    data.forEach((list,index)=>{
+        data[index].idx=index;
+    })
+    setTimeout(storageUpdate(data),100);
+}
+
+function updateList(item){
+const index=item.getAttribute('index');
+data.forEach((list,arrindex)=>{
+    if(index==list.idx){
+        data[arrindex].ischecked=!data[arrindex].ischecked;
+        }});
+        storageUpdate(data);
+        listAdd();
+}
+
+
+
+
+</script>
+</body>
+</html>
