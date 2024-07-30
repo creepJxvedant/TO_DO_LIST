@@ -1,0 +1,87 @@
+*{
+    text-align: center;
+    background-color: #a8dad7;
+    color: #111;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+body{
+    background:linear-gradient(60deg,rgba(100, 100, 203, 0.682),rgba(214, 130, 62, 0.732));
+    min-height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main{
+    overflow-y: scroll;
+    min-width:30vw;
+    height:80vh;
+    position: relative;
+    border-radius:10px;
+    }
+.main::-webkit-scrollbar{
+    display: none;
+}
+#textbox
+{
+outline: none;
+border: none;
+border-bottom: 3px solid #d27b29;
+width:200px;
+height:20px;
+}
+#calender-box{
+    color:#333;
+    outline: none;
+    border:none;
+    width:110px;
+    height: 22px;
+    font-size:15px;
+    font-weight: 700;
+}
+.adder{
+padding:4vh 1vw;
+display:flex;
+align-items: center;
+justify-content:space-between;
+width:100%;
+height:30px;
+}
+
+
+.list-item{
+    cursor: pointer;
+    min-height: 50vh;
+    padding:2vh 1vw;
+}
+ul
+{
+    margin-top:2vh;
+    display:flex;
+    justify-content:space-between;
+}
+#check-btn{
+    width:20px;
+    height:20px;
+    border:2px solid black;
+}
+
+.btn-class {
+    cursor: pointer;
+    width:90px;
+    height:30px;
+    border:none;
+    border-radius: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+.btn-class:hover{
+    transition: 0.5s all;
+    transform:scale(1.01);
+}
+.btn-class:active{
+    transition: 0.3s all;
+    transform:scale(0.95);
+}

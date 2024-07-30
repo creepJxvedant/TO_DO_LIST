@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-List</title>
+    
+    <link href="style.css" rel="stylesheet">
+<style>
+.text{
+    display: none;
+}
+
+    @media (max-width:420px) {
+.main{
+    font-size:15px;
+    font-weight: 530;
+    transform: scale(0.90);
+}
+    }
+
+    @media (max-width:400px) {
+.main{
+    transform: scale(0.80);
+}
+    }
+
+    @media (max-width:360px) {
+.main{
+    transform: scale(0.70);
+}
+
+    }
+@media (max-width:320px) {
+.main{
+display:none;
+}
+.text{
+    display: block;
+}
+}
+
+</style>
+</head>
+<body class="user-select-none">
+<div class="text">
+    <p style="font-size:40px;font-weight: 800;">bhai! tereko itna chota dikhega?</p>
+</div>
+
+
+<div class="main">   
+<h2 style="font-size:4vh;" >TODO LIST</h2>
+<hr>
+<div class="adder">
+<input type="text" id="textbox" placeholder="type something..." required>
+<input type="date" required id="calender-box">
+<button onclick="getData()" class="btn-class" style="background-color: rgb(24, 142, 24);">Add</button>
+</div>
+
+<div class="list-item">
+</div>
+</div>
+<script src="scipt.js"></script>
+</body>
+</html>
